@@ -46,6 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         package:
+          - appstash
           - casing
           - fetch-api-client
           - find-pkg
