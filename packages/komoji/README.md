@@ -19,7 +19,7 @@
 
 ## Why komoji?
 
-komoji is your friendly companion for working with naming conventions. It's tiny, focused, and does one thing exceptionally well: transforming strings between different cases with zero dependencies.
+Named after the Japanese word 小文字 (komoji, "lowercase letters"), komoji is your friendly companion for working with naming conventions. It's tiny, focused, and does one thing exceptionally well: transforming strings between different cases with zero dependencies.
 
 Perfect for:
 - 🔄 Converting API responses to JavaScript conventions
