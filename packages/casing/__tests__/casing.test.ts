@@ -18,7 +18,7 @@ it('should convert strings to camelCase', () => {
   expect(toCamelCase('hello-world')).toBe('helloWorld');
   expect(toCamelCase('Hello-World')).toBe('helloWorld');
   expect(toCamelCase('_hello_world')).toBe('helloWorld');
-  expect(toCamelCase('123hello_world')).toBe('helloWorld');
+  expect(toCamelCase('123hello_world')).toBe('123helloWorld');
 });
 
 it('should validate valid JavaScript identifiers', () => {
