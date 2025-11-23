@@ -34,5 +34,8 @@
     "js-yaml": "^4.1.0",
     "minimist": "^1.2.8"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "@types/minimist": "^1.2.5"
+  }
 }
