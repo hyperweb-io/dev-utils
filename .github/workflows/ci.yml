@@ -46,11 +46,12 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          - komoji
+          - appstash
           - fetch-api-client
           - find-pkg
           - http-errors
           - jsonld-tools
+          - komoji
           - makage
           - nested-obj
           - node-api-client
@@ -58,6 +59,8 @@ jobs:
           - schema-typescript
           - strfy-js
           - yanse
+          - inquirerer
+          - create-gen-app
 
     steps:
     - name: Checkout code
