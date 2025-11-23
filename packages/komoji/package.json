@@ -1,8 +1,8 @@
 {
-  "name": "@interweb/casing",
+  "name": "komoji",
   "version": "0.7.2",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "description": "Interweb casing utils",
+  "description": "the tiny case transformer — effortlessly transform strings between naming conventions",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
@@ -28,5 +28,19 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "keywords": []
+  "keywords": [
+    "case",
+    "camelCase",
+    "PascalCase",
+    "kebab-case",
+    "snake_case",
+    "naming",
+    "conventions",
+    "transform",
+    "convert",
+    "string",
+    "identifier",
+    "codegen",
+    "utility"
+  ]
 }

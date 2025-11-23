@@ -1,5 +1,5 @@
 import * as t from '@babel/types';
-import { toPascalCase } from '@interweb/casing';
+import { toPascalCase } from 'komoji';
 import { minimatch } from 'minimatch';
 
 import { SchemaNamingStrategy } from './context';

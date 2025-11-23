@@ -125,11 +125,11 @@ npm install @interweb/http-errors
 
 ### Utilities
 
-#### [`@interweb/casing`](./packages/casing)
-String casing utilities for converting between different naming conventions.
+#### [`komoji`](./packages/komoji)
+the tiny case transformer — effortlessly transform strings between naming conventions
 
 ```bash
-npm install @interweb/casing
+npm install komoji
 ```
 
 #### [`@interweb/find-pkg`](./packages/find-pkg)

@@ -1,6 +1,6 @@
 import generate from '@babel/generator';
 import * as t from '@babel/types';
-import { toCamelCase, toPascalCase } from '@interweb/casing';
+import { toCamelCase, toPascalCase } from 'komoji';
 import { generateTypeScriptTypes } from 'schema-typescript';
 import { getTypeNameSafe, shouldInclude } from 'schema-typescript';
 
