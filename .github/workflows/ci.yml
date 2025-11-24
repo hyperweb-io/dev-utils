@@ -60,6 +60,7 @@ jobs:
           - yanse
           - inquirerer
           - create-gen-app
+          - create-gen-app-test
 
     steps:
     - name: Checkout code

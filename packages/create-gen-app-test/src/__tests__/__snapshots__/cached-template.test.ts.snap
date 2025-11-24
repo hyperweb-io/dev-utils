@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`cached template integration tests first clone with variable replacement should snapshot created directory structure 1`] = `
+[
+  "module/",
+  "module/README.md",
+  "module/__tests__/",
+  "module/__tests__/basic.test.ts",
+  "module/jest.config.js",
+  "module/package.json",
+  "workspace/",
+  "workspace/.eslintrc.json",
+  "workspace/.github/",
+  "workspace/.github/run-tests.yaml",
+  "workspace/.gitignore",
+  "workspace/.prettierrc.json",
+  "workspace/.vscode/",
+  "workspace/.vscode/settings.json",
+  "workspace/LICENSE",
+  "workspace/Makefile",
+  "workspace/README.md",
+  "workspace/bin/",
+  "workspace/bin/install.sh",
+  "workspace/docker-compose.yml",
+  "workspace/launchql.json",
+  "workspace/lerna.json",
+  "workspace/package.json",
+  "workspace/pnpm-workspace.yaml",
+  "workspace/tsconfig.json",
+]
+`;
+
+exports[`cached template integration tests first clone with variable replacement should snapshot package.json files if they exist 1`] = `
+{
+  "module/package.json": {
+    "author": "__USERFULLNAME__ <__USEREMAIL__>",
+    "bugs": {
+      "url": "https://github.com/__USERNAME__/__REPONAME__/issues",
+    },
+    "description": "__MODULEDESC__",
+    "devDependencies": {
+      "pgsql-test": "^2.13.2",
+    },
+    "homepage": "https://github.com/__USERNAME__/__REPONAME__",
+    "keywords": [],
+    "license": "SEE LICENSE IN LICENSE",
+    "name": "__PACKAGE_IDENTIFIER__",
+    "pnpm": {
+      "overrides": {
+        "graphql": "14.7.0",
+      },
+    },
+    "publishConfig": {
+      "access": "__ACCESS__",
+      "directory": "dist",
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/__USERNAME__/__REPONAME__",
+    },
+    "scripts": {
+      "lint": "eslint . --fix",
+      "test": "jest",
+      "test:watch": "jest --watch",
+    },
+    "version": "0.0.1",
+  },
+  "workspace/package.json": {
+    "author": "__USERFULLNAME__ <__USEREMAIL__>",
+    "devDependencies": {
+      "@types/jest": "^29.5.14",
+      "@types/node": "^22.10.2",
+      "@typescript-eslint/eslint-plugin": "^8.15.0",
+      "@typescript-eslint/parser": "^8.15.0",
+      "eslint": "^9.13.0",
+      "eslint-config-prettier": "^10.1.1",
+      "eslint-plugin-simple-import-sort": "^12.1.1",
+      "eslint-plugin-unused-imports": "^4.3.0",
+      "jest": "^29.7.0",
+      "lerna": "^8.2.4",
+      "pgsql-test": "^2.13.2",
+      "prettier": "^3.3.3",
+      "ts-jest": "^29.2.5",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.6.3",
+    },
+    "license": "SEE LICENSE IN LICENSE",
+    "name": "__MODULENAME__",
+    "pnpm": {
+      "overrides": {
+        "graphql": "14.7.0",
+      },
+    },
+    "private": true,
+    "publishConfig": {
+      "access": "restricted",
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/__USERNAME__/__MODULENAME__",
+    },
+    "scripts": {
+      "lint": "pnpm -r run lint",
+    },
+    "version": "0.0.1",
+    "workspaces": [
+      "packages/*",
+    ],
+  },
+}
+`;
+
+exports[`cached template integration tests second clone from cache should snapshot created directory structure from cache 1`] = `
+[
+  "module/",
+  "module/README.md",
+  "module/__tests__/",
+  "module/__tests__/basic.test.ts",
+  "module/jest.config.js",
+  "module/package.json",
+  "workspace/",
+  "workspace/.eslintrc.json",
+  "workspace/.github/",
+  "workspace/.github/run-tests.yaml",
+  "workspace/.gitignore",
+  "workspace/.prettierrc.json",
+  "workspace/.vscode/",
+  "workspace/.vscode/settings.json",
+  "workspace/LICENSE",
+  "workspace/Makefile",
+  "workspace/README.md",
+  "workspace/bin/",
+  "workspace/bin/install.sh",
+  "workspace/docker-compose.yml",
+  "workspace/launchql.json",
+  "workspace/lerna.json",
+  "workspace/package.json",
+  "workspace/pnpm-workspace.yaml",
+  "workspace/tsconfig.json",
+]
+`;
+
+exports[`cached template integration tests second clone from cache should snapshot package.json files from cached template 1`] = `
+{
+  "module/package.json": {
+    "author": "__USERFULLNAME__ <__USEREMAIL__>",
+    "bugs": {
+      "url": "https://github.com/__USERNAME__/__REPONAME__/issues",
+    },
+    "description": "__MODULEDESC__",
+    "devDependencies": {
+      "pgsql-test": "^2.13.2",
+    },
+    "homepage": "https://github.com/__USERNAME__/__REPONAME__",
+    "keywords": [],
+    "license": "SEE LICENSE IN LICENSE",
+    "name": "__PACKAGE_IDENTIFIER__",
+    "pnpm": {
+      "overrides": {
+        "graphql": "14.7.0",
+      },
+    },
+    "publishConfig": {
+      "access": "__ACCESS__",
+      "directory": "dist",
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/__USERNAME__/__REPONAME__",
+    },
+    "scripts": {
+      "lint": "eslint . --fix",
+      "test": "jest",
+      "test:watch": "jest --watch",
+    },
+    "version": "0.0.1",
+  },
+  "workspace/package.json": {
+    "author": "__USERFULLNAME__ <__USEREMAIL__>",
+    "devDependencies": {
+      "@types/jest": "^29.5.14",
+      "@types/node": "^22.10.2",
+      "@typescript-eslint/eslint-plugin": "^8.15.0",
+      "@typescript-eslint/parser": "^8.15.0",
+      "eslint": "^9.13.0",
+      "eslint-config-prettier": "^10.1.1",
+      "eslint-plugin-simple-import-sort": "^12.1.1",
+      "eslint-plugin-unused-imports": "^4.3.0",
+      "jest": "^29.7.0",
+      "lerna": "^8.2.4",
+      "pgsql-test": "^2.13.2",
+      "prettier": "^3.3.3",
+      "ts-jest": "^29.2.5",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.6.3",
+    },
+    "license": "SEE LICENSE IN LICENSE",
+    "name": "__MODULENAME__",
+    "pnpm": {
+      "overrides": {
+        "graphql": "14.7.0",
+      },
+    },
+    "private": true,
+    "publishConfig": {
+      "access": "restricted",
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/__USERNAME__/__MODULENAME__",
+    },
+    "scripts": {
+      "lint": "pnpm -r run lint",
+    },
+    "version": "0.0.1",
+    "workspaces": [
+      "packages/*",
+    ],
+  },
+}
+`;
