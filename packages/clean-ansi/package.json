@@ -1,16 +1,15 @@
 {
-  "name": "create-gen-app-test",
+  "name": "clean-ansi",
   "version": "0.1.1",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "description": "Integration tests for create-gen-app with cache leveraging",
+  "description": "Remove ANSI escape codes from strings",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
   "homepage": "https://github.com/hyperweb-io/dev-utils",
   "license": "MIT",
-  "private": true,
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "directory": "dist"
   },
   "repository": {
@@ -25,15 +24,19 @@
     "clean": "makage clean",
     "prepublishOnly": "npm run build",
     "build": "npm run clean && makage build-ts && npm run copy",
+    "lint": "eslint . --fix",
     "test": "jest",
     "test:watch": "jest --watch"
-  },
-  "dependencies": {
-    "appstash": "workspace:*",
-    "create-gen-app": "workspace:*"
   },
   "devDependencies": {
     "makage": "0.1.5"
   },
-  "keywords": []
+  "keywords": [
+    "ansi",
+    "strip",
+    "clean",
+    "escape codes",
+    "terminal",
+    "colors"
+  ]
 }
