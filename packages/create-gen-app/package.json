@@ -3,6 +3,10 @@
   "version": "0.1.4",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "description": "Clone and customize template repositories with variable replacement",
+  "bin": {
+    "create-gen-app": "./cli.js",
+    "cga": "./cli.js"
+  },
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
@@ -20,18 +24,21 @@
     "url": "https://github.com/hyperweb-io/dev-utils/issues"
   },
   "scripts": {
-    "copy": "makage assets",
+    "copy": "copyfiles -f ../../LICENSE README.md package.json \"licenses-templates/**/*\" dist",
     "clean": "makage clean",
     "prepublishOnly": "npm run build",
-    "build": "npm run clean && makage build-ts && npm run copy",
-    "dev": "ts-node dev/index",
+    "build": "npm run clean && tsc && tsc -p tsconfig.esm.json && npm run copy",
+    "dev": "node -r ts-node/register dev/index.ts",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "inquirerer": "workspace:*"
+    "inquirerer": "workspace:*",
+    "minimist": "^1.2.8"
   },
   "devDependencies": {
+    "@types/minimist": "^1.2.5",
+    "copyfiles": "^2.4.1",
     "makage": "0.1.5"
   },
   "keywords": []
