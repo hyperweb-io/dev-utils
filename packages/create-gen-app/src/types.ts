@@ -59,6 +59,31 @@ export interface CreateGenOptions {
    * Whether to use TTY for interactive prompts
    */
   noTty?: boolean;
+
+  /**
+   * Optional caching configuration. Pass `false` to disable caching entirely.
+   */
+  cache?: CacheOptions | false;
+}
+
+/**
+ * Options that control template caching behavior
+ */
+export interface CacheOptions {
+  /**
+   * Enable or disable caching. Defaults to true.
+   */
+  enabled?: boolean;
+
+  /**
+   * Tool name used for appstash (affects ~/.<tool> dirs). Defaults to `pgpm`.
+   */
+  toolName?: string;
+
+  /**
+   * Optional base directory for appstash. Useful for tests to avoid touching the real home dir.
+   */
+  baseDir?: string;
 }
 
 /**

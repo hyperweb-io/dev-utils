@@ -48,7 +48,7 @@ export async function cloneRepo(
  * @param url - Input URL
  * @returns Normalized git URL
  */
-function normalizeGitUrl(url: string): string {
+export function normalizeGitUrl(url: string): string {
   if (
     url.startsWith("git@") ||
     url.startsWith("https://") ||

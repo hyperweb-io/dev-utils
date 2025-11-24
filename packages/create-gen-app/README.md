@@ -25,6 +25,7 @@ A TypeScript-first library for cloning template repositories, asking the user fo
 - Merge auto-discovered variables with `.questions.{json,js}` (questions win, including `ignore` patterns)
 - Interactive prompts powered by `inquirerer`, with flexible override mapping (`argv` support) and non-TTY mode for CI
 - License scaffolding: choose from MIT, Apache-2.0, ISC, GPL-3.0, BSD-3-Clause, Unlicense, or MPL-2.0 and generate a populated `LICENSE`
+- Built-in template caching powered by `appstash`, so repeat runs skip `git clone` (configurable via `cache` options)
 
 ## Installation
 
@@ -37,6 +38,9 @@ npm install create-gen-app
 ## Library Usage
 
 ```typescript
+import * as os from "os";
+import * as path from "path";
+
 import { createGen } from "create-gen-app";
 
 await createGen({
@@ -51,8 +55,32 @@ await createGen({
     LICENSE: "MIT",
   },
   noTty: true,
+  cache: {
+    // optional: override tool/baseDir (defaults to pgpm + ~/.pgpm)
+    toolName: "pgpm",
+    baseDir: path.join(os.tmpdir(), "create-gen-cache"),
+  },
 });
 ```
+
+### Template Caching
+
+`create-gen-app` caches repositories under `~/.pgpm/cache/repos/<hash>` by default (using [`appstash`](https://github.com/hyperweb-io/dev-utils/tree/main/packages/appstash)). The first run clones & stores the repo, subsequent runs re-use the cached directory.
+
+- Disable caching with `cache: false` or `cache: { enabled: false }`
+- Override the tool name or base directory with `cache: { toolName, baseDir }`
+- For tests/CI, point `baseDir` to a temporary folder so the suite does not touch the developer’s real home directory:
+
+```ts
+const tempBase = fs.mkdtempSync(path.join(os.tmpdir(), "create-gen-cache-"));
+
+await createGen({
+  ...options,
+  cache: { baseDir: tempBase, toolName: "pgpm-test-suite" },
+});
+```
+
+The cache directory never mutates the template, so reusing the same cached repo across many runs is safe.
 
 ### Template Variables
 
@@ -107,6 +135,7 @@ No code changes are needed; the generator discovers templates at runtime and wil
 
 - `createGen(options)` – full pipeline (clone → extract → prompt → replace)
 - `cloneRepo(url, { branch })` – clone to a temp dir
+- `normalizeCacheOptions(cache)` / `prepareTemplateDirectory(...)` – inspect or reuse cached template repos
 - `extractVariables(dir)` – parse file/folder names + content for variables, load `.questions`
 - `promptUser(extracted, argv, noTty)` – run interactive questions with override alias deduping
 - `replaceVariables(templateDir, outputDir, extracted, answers)` – copy files, rename paths, render licenses

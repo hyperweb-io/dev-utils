@@ -73,6 +73,9 @@ importers:
 
   packages/create-gen-app:
     dependencies:
+      appstash:
+        specifier: workspace:*
+        version: link:../appstash/dist
       inquirerer:
         specifier: workspace:*
         version: link:../inquirerer/dist
