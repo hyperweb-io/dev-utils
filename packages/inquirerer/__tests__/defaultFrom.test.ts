@@ -98,7 +98,7 @@ describe('Inquirerer - defaultFrom feature', () => {
 
   describe('git resolvers', () => {
     it('should use git.user.name as default', async () => {
-      mockedExecSync.mockReturnValue(Buffer.from('John Doe\n'));
+      mockedExecSync.mockReturnValue('John Doe\n' as any);
 
       const prompter = new Inquirerer({
         input: mockInput,
@@ -124,7 +124,7 @@ describe('Inquirerer - defaultFrom feature', () => {
     });
 
     it('should use git.user.email as default', async () => {
-      mockedExecSync.mockReturnValue(Buffer.from('john@example.com\n'));
+      mockedExecSync.mockReturnValue('john@example.com\n' as any);
 
       const prompter = new Inquirerer({
         input: mockInput,
@@ -176,8 +176,8 @@ describe('Inquirerer - defaultFrom feature', () => {
 
     it('should resolve multiple git fields', async () => {
       mockedExecSync
-        .mockReturnValueOnce(Buffer.from('Jane Smith\n'))
-        .mockReturnValueOnce(Buffer.from('jane@example.com\n'));
+        .mockReturnValueOnce('Jane Smith\n' as any)
+        .mockReturnValueOnce('jane@example.com\n' as any);
 
       const prompter = new Inquirerer({
         input: mockInput,
@@ -337,7 +337,7 @@ describe('Inquirerer - defaultFrom feature', () => {
 
   describe('priority and fallbacks', () => {
     it('should prioritize argv over defaultFrom', async () => {
-      mockedExecSync.mockReturnValue(Buffer.from('Git User\n'));
+      mockedExecSync.mockReturnValue('Git User\n' as any);
 
       const prompter = new Inquirerer({
         input: mockInput,
@@ -384,7 +384,7 @@ describe('Inquirerer - defaultFrom feature', () => {
     });
 
     it('should handle mixed defaultFrom and static defaults', async () => {
-      mockedExecSync.mockReturnValue(Buffer.from('Jane Doe\n'));
+      mockedExecSync.mockReturnValue('Jane Doe\n' as any);
 
       const prompter = new Inquirerer({
         input: mockInput,

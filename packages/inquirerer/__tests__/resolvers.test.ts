@@ -163,7 +163,7 @@ describe('Git Resolvers', () => {
 
     describe('getGitConfig', () => {
         it('should return git config value when successful', () => {
-            mockedExecSync.mockReturnValue(Buffer.from('John Doe\n'));
+            mockedExecSync.mockReturnValue('John Doe\n' as any);
 
             const result = getGitConfig('user.name');
 
@@ -178,7 +178,7 @@ describe('Git Resolvers', () => {
         });
 
         it('should trim whitespace from git config value', () => {
-            mockedExecSync.mockReturnValue(Buffer.from('  test@example.com  \n'));
+            mockedExecSync.mockReturnValue('  test@example.com  \n' as any);
 
             const result = getGitConfig('user.email');
 
@@ -196,7 +196,7 @@ describe('Git Resolvers', () => {
         });
 
         it('should return undefined when git config returns empty string', () => {
-            mockedExecSync.mockReturnValue(Buffer.from(''));
+            mockedExecSync.mockReturnValue('' as any);
 
             const result = getGitConfig('user.name');
 
@@ -206,7 +206,7 @@ describe('Git Resolvers', () => {
 
     describe('git.user.name resolver', () => {
         it('should resolve git user name', async () => {
-            mockedExecSync.mockReturnValue(Buffer.from('Jane Smith\n'));
+            mockedExecSync.mockReturnValue('Jane Smith\n' as any);
 
             const result = await globalResolverRegistry.resolve('git.user.name');
 
@@ -226,7 +226,7 @@ describe('Git Resolvers', () => {
 
     describe('git.user.email resolver', () => {
         it('should resolve git user email', async () => {
-            mockedExecSync.mockReturnValue(Buffer.from('jane@example.com\n'));
+            mockedExecSync.mockReturnValue('jane@example.com\n' as any);
 
             const result = await globalResolverRegistry.resolve('git.user.email');
 
