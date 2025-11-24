@@ -28,6 +28,7 @@ export class TerminalKeypress {
   private noTty: boolean;
   private input: Readable;
   private proc: ProcessWrapper;
+  private dataHandler: ((key: string) => void) | null = null;
 
   constructor(
     noTty: boolean = false,
@@ -38,10 +39,8 @@ export class TerminalKeypress {
     this.input = input;
     this.proc = proc;
 
+    // Don't set raw mode yet; let resume() handle it when necessary
     if (this.isTTY()) {
-      if (typeof (this.input as any).setRawMode === 'function') {
-        (this.input as any).setRawMode(true);
-      }
       this.input.resume();
       this.input.setEncoding('utf8');
     }
@@ -53,14 +52,15 @@ export class TerminalKeypress {
   }
 
   private setupListeners(): void {
-    this.input.on('data', (key: string) => {
+    this.dataHandler = (key: string) => {
       if (!this.active) return;
       const handlers = this.listeners[key];
       handlers?.forEach(handler => handler());
       if (key === KEY_CODES.CTRL_C) { // Ctrl+C
         this.proc.exit(0);
       }
-    });
+    };
+    this.input.on('data', this.dataHandler);
   }
 
   on(key: string, callback: KeyHandler): void {
@@ -89,6 +89,9 @@ export class TerminalKeypress {
 
   resume(): void {
     this.active = true;
+    if (this.isTTY() && typeof (this.input as any).setRawMode === 'function') {
+      (this.input as any).setRawMode(true);
+    }
   }
 
   destroy(): void {
@@ -96,6 +99,9 @@ export class TerminalKeypress {
       (this.input as any).setRawMode(false);
     }
     this.input.pause();
-    this.input.removeAllListeners('data');
+    if (this.dataHandler) {
+      this.input.removeListener('data', this.dataHandler);
+      this.dataHandler = null;
+    }
   }
 }
