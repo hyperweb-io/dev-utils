@@ -316,7 +316,8 @@ describe('Date Resolvers', () => {
         it('should resolve current timestamp in milliseconds', async () => {
             const result = await globalResolverRegistry.resolve('date.timestamp');
 
-            expect(result).toBe('1732375845123');
+            // 2025-11-23T15:30:45.123Z corresponds to this timestamp
+            expect(result).toBe(String(new Date('2025-11-23T15:30:45.123Z').getTime()));
         });
     });
 });

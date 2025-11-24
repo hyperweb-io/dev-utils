@@ -311,7 +311,8 @@ describe('Inquirerer - defaultFrom feature', () => {
     it('should use custom async resolver', async () => {
       const customRegistry = new DefaultResolverRegistry();
       customRegistry.register('custom.async', async () => {
-        return new Promise(resolve => setTimeout(() => resolve('async-result'), 10));
+        // Return a promise without setTimeout to avoid issues with fake timers
+        return Promise.resolve('async-result');
       });
 
       const prompter = new Inquirerer({
@@ -422,7 +423,9 @@ describe('Inquirerer - defaultFrom feature', () => {
 
   describe('interactive mode with defaultFrom', () => {
     it('should show resolved default in prompt and allow override', async () => {
-      mockedExecSync.mockReturnValue(Buffer.from('John Doe\n'));
+      jest.useRealTimers();  // Use real timers for interactive tests
+
+      mockedExecSync.mockReturnValue('John Doe\n' as any);
 
       enqueueInputResponse({ type: 'read', value: 'Custom Name' });
 
@@ -444,10 +447,15 @@ describe('Inquirerer - defaultFrom feature', () => {
       const result = await prompter.prompt({}, questions);
 
       expect(result).toEqual({ authorName: 'Custom Name' });
+
+      jest.useFakeTimers();  // Restore fake timers
+      jest.setSystemTime(new Date('2025-11-23T15:30:45.123Z'));
     });
 
     it('should use resolved default when user presses enter', async () => {
-      mockedExecSync.mockReturnValue(Buffer.from('John Doe\n'));
+      jest.useRealTimers();  // Use real timers for interactive tests
+
+      mockedExecSync.mockReturnValue('John Doe\n' as any);
 
       enqueueInputResponse({ type: 'read', value: '' });  // Empty input = use default
 
@@ -469,11 +477,16 @@ describe('Inquirerer - defaultFrom feature', () => {
       const result = await prompter.prompt({}, questions);
 
       expect(result).toEqual({ authorName: 'John Doe' });
+
+      jest.useFakeTimers();  // Restore fake timers
+      jest.setSystemTime(new Date('2025-11-23T15:30:45.123Z'));
     });
   });
 
   describe('question types with defaultFrom', () => {
     it('should work with confirm type', async () => {
+      jest.useRealTimers();  // Use real timers for interactive tests
+
       const customRegistry = new DefaultResolverRegistry();
       customRegistry.register('custom.bool', () => true);
 
@@ -498,6 +511,9 @@ describe('Inquirerer - defaultFrom feature', () => {
       const result = await prompter.prompt({}, questions);
 
       expect(result).toEqual({ confirmed: true });
+
+      jest.useFakeTimers();  // Restore fake timers
+      jest.setSystemTime(new Date('2025-11-23T15:30:45.123Z'));
     });
 
     it('should work with number type', async () => {
