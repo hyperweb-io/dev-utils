@@ -25,6 +25,7 @@
     "clean": "makage clean",
     "prepublishOnly": "npm run build",
     "build": "npm run clean && makage build-ts && npm run copy",
+    "dev": "node -r ts-node/register dev/index.ts",
     "test": "jest",
     "test:watch": "jest --watch"
   },

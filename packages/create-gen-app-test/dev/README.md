@@ -4,7 +4,7 @@ This script helps you test `create-gen-app` locally with the pgpm-boilerplates r
 
 ## Usage
 
-From the `packages/create-gen-app` directory, run:
+From the `packages/create-gen-app-test` directory, run:
 
 ```bash
 pnpm dev [--repo url] [--branch name] [--path dir] [--template name] [--output dir]
@@ -72,4 +72,5 @@ Extracting template variables...
 - The `test-output` directory is gitignored
 - The temporary clone directory is automatically cleaned up after generation
 - You can test different templates without affecting your workspace
+
 

@@ -111,4 +111,4 @@ No code changes are needed; the generator discovers templates at runtime and wil
 - `promptUser(extracted, argv, noTty)` – run interactive questions with override alias deduping
 - `replaceVariables(templateDir, outputDir, extracted, answers)` – copy files, rename paths, render licenses
 
-See `dev/README.md` for the local development helper script (`pnpm dev`).
+See `packages/create-gen-app-test/dev/README.md` for the local development helper script (`pnpm --filter create-gen-app-test dev`).
