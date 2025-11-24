@@ -3,7 +3,8 @@ import {
     globalResolverRegistry,
     registerDefaultResolver,
     resolveDefault,
-    getGitConfig
+    getGitConfig,
+    getNpmWhoami
 } from '../src/resolvers';
 
 // Mock child_process.execSync for git config tests
@@ -245,6 +246,75 @@ describe('Git Resolvers', () => {
     });
 });
 
+describe('NPM Resolvers', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    describe('getNpmWhoami', () => {
+        it('should return npm username when logged in', () => {
+            mockedExecSync.mockReturnValue('johndoe\n' as any);
+
+            const result = getNpmWhoami();
+
+            expect(result).toBe('johndoe');
+            expect(mockedExecSync).toHaveBeenCalledWith(
+                'npm whoami',
+                expect.objectContaining({
+                    encoding: 'utf8',
+                    stdio: ['pipe', 'pipe', 'ignore']
+                })
+            );
+        });
+
+        it('should trim whitespace from npm username', () => {
+            mockedExecSync.mockReturnValue('  janedoe  \n' as any);
+
+            const result = getNpmWhoami();
+
+            expect(result).toBe('janedoe');
+        });
+
+        it('should return undefined when not logged in to npm', () => {
+            mockedExecSync.mockImplementation(() => {
+                throw new Error('Not logged in');
+            });
+
+            const result = getNpmWhoami();
+
+            expect(result).toBeUndefined();
+        });
+
+        it('should return undefined when npm whoami returns empty string', () => {
+            mockedExecSync.mockReturnValue('' as any);
+
+            const result = getNpmWhoami();
+
+            expect(result).toBeUndefined();
+        });
+    });
+
+    describe('npm.whoami resolver', () => {
+        it('should resolve npm username', async () => {
+            mockedExecSync.mockReturnValue('npmuser\n' as any);
+
+            const result = await globalResolverRegistry.resolve('npm.whoami');
+
+            expect(result).toBe('npmuser');
+        });
+
+        it('should return undefined when npm not logged in', async () => {
+            mockedExecSync.mockImplementation(() => {
+                throw new Error('Not logged in');
+            });
+
+            const result = await globalResolverRegistry.resolve('npm.whoami');
+
+            expect(result).toBeUndefined();
+        });
+    });
+});
+
 describe('Date Resolvers', () => {
     beforeEach(() => {
         // Mock Date to return consistent values
@@ -326,6 +396,10 @@ describe('Global Registry', () => {
     it('should have git resolvers registered by default', () => {
         expect(globalResolverRegistry.has('git.user.name')).toBe(true);
         expect(globalResolverRegistry.has('git.user.email')).toBe(true);
+    });
+
+    it('should have npm resolvers registered by default', () => {
+        expect(globalResolverRegistry.has('npm.whoami')).toBe(true);
     });
 
     it('should have date resolvers registered by default', () => {

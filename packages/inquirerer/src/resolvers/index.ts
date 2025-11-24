@@ -1,5 +1,6 @@
 import { gitResolvers } from './git';
 import { dateResolvers } from './date';
+import { npmResolvers } from './npm';
 import type { DefaultResolver, ResolverRegistry } from './types';
 
 /**
@@ -88,6 +89,7 @@ export class DefaultResolverRegistry {
 export const globalResolverRegistry = new DefaultResolverRegistry({
     ...gitResolvers,
     ...dateResolvers,
+    ...npmResolvers,
 });
 
 /**
@@ -111,3 +113,4 @@ export function resolveDefault(key: string): Promise<any> {
 // Re-export types and utilities
 export type { DefaultResolver, ResolverRegistry } from './types';
 export { getGitConfig } from './git';
+export { getNpmWhoami } from './npm';

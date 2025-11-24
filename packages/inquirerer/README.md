@@ -702,6 +702,12 @@ const questions = [
   },
   {
     type: 'text',
+    name: 'npmUser',
+    message: 'NPM username?',
+    defaultFrom: 'npm.whoami'  // Auto-fills from npm whoami
+  },
+  {
+    type: 'text',
     name: 'copyrightYear',
     message: 'Copyright year?',
     defaultFrom: 'date.year'  // Auto-fills current year
@@ -722,6 +728,12 @@ Inquirerer comes with several built-in resolvers ready to use:
 |----------|-------------|----------------|
 | `git.user.name` | Git global user name | `"John Doe"` |
 | `git.user.email` | Git global user email | `"john@example.com"` |
+
+#### NPM
+
+| Resolver | Description | Example Output |
+|----------|-------------|----------------|
+| `npm.whoami` | Currently logged in npm user | `"johndoe"` |
 
 #### Date & Time
 
