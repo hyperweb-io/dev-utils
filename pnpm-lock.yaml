@@ -143,9 +143,6 @@ importers:
         version: 0.1.3
     publishDirectory: dist
 
-  packages/makage:
-    publishDirectory: dist
-
   packages/nested-obj:
     devDependencies:
       makage:
