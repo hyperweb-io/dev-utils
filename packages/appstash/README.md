@@ -6,8 +6,6 @@ Simple, clean application directory resolution for Node.js applications.
 
 ```bash
 npm install appstash
-# or
-pnpm add appstash
 ```
 
 ## Features

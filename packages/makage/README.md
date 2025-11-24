@@ -185,18 +185,3 @@ Most monorepo packages need the same basic build operations:
 - Build TypeScript for both CJS and ESM
 
 Instead of installing multiple dependencies (`cpy`, `rimraf`, etc.) in every package, `makage` provides these essentials with zero dependencies, using only Node.js built-in modules.
-
-## Development
-
-When first cloning the repo:
-
-```bash
-pnpm install
-pnpm build
-```
-
-Run tests:
-
-```bash
-pnpm test
-```
