@@ -39,8 +39,8 @@ A comprehensive collection of TypeScript utilities for working with schemas, JSO
 
 ### Prerequisites
 
-- Node.js 16+
-- pnpm (recommended) or yarn
+- Node.js 18+
+- `pnpm` 
 
 ### Getting Started
 
