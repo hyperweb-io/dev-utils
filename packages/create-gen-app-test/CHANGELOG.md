@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/hyperweb-io/dev-utils/compare/create-gen-app-test@0.1.4...create-gen-app-test@0.1.5) (2025-11-25)
+
+### Bug Fixes
+
+- **create-gen-app-test:** move integration-helpers to fix TypeScript rootDir error ([689e65d](https://github.com/hyperweb-io/dev-utils/commit/689e65db1400442b58eddfe1c6b61efdb77d556f))
+
 ## [0.1.4](https://github.com/hyperweb-io/dev-utils/compare/create-gen-app-test@0.1.3...create-gen-app-test@0.1.4) (2025-11-24)
 
 **Note:** Version bump only for package create-gen-app-test
