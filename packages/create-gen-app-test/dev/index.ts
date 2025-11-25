@@ -3,10 +3,7 @@ import { Inquirerer, ListQuestion } from "inquirerer";
 import minimist from "minimist";
 import * as path from "path";
 
-import { cloneRepo } from "../src/clone";
-import { extractVariables } from "../src/extract";
-import { promptUser } from "../src/prompt";
-import { replaceVariables } from "../src/replace";
+import { cloneRepo, extractVariables, promptUser, replaceVariables } from "create-gen-app";
 
 const DEFAULT_REPO = "https://github.com/launchql/pgpm-boilerplates/";
 const DEFAULT_DIRECTORY = ".";
@@ -40,9 +37,7 @@ async function main() {
 
     const templateDir = path.join(tempDir, argv.path);
     if (!fs.existsSync(templateDir)) {
-      throw new Error(
-        `Template path "${argv.path}" does not exist in ${argv.repo}`
-      );
+      throw new Error(`Template path "${argv.path}" does not exist in ${argv.repo}`);
     }
     const folders = fs
       .readdirSync(templateDir, { withFileTypes: true })
@@ -53,9 +48,7 @@ async function main() {
       throw new Error("No template folders found in repository");
     }
 
-    console.log(
-      `\nFound ${folders.length} template(s): ${folders.join(", ")}\n`
-    );
+    console.log(`\nFound ${folders.length} template(s): ${folders.join(", ")}\n`);
 
     let selectedFolder = argv.template;
     if (selectedFolder) {
@@ -91,16 +84,10 @@ async function main() {
     console.log("Extracting template variables...");
     const extractedVariables = await extractVariables(selectedTemplateDir);
 
-    console.log(
-      `Found ${extractedVariables.fileReplacers.length} file replacers`
-    );
-    console.log(
-      `Found ${extractedVariables.contentReplacers.length} content replacers`
-    );
+    console.log(`Found ${extractedVariables.fileReplacers.length} file replacers`);
+    console.log(`Found ${extractedVariables.contentReplacers.length} content replacers`);
     if (extractedVariables.projectQuestions) {
-      console.log(
-        `Found ${extractedVariables.projectQuestions.questions.length} project questions`
-      );
+      console.log(`Found ${extractedVariables.projectQuestions.questions.length} project questions`);
     }
 
     console.log("\nPrompting for variable values...");
@@ -113,12 +100,7 @@ async function main() {
     }
 
     console.log(`\nGenerating project in ${absoluteOutputDir}...`);
-    await replaceVariables(
-      selectedTemplateDir,
-      absoluteOutputDir,
-      extractedVariables,
-      variableAnswers
-    );
+    await replaceVariables(selectedTemplateDir, absoluteOutputDir, extractedVariables, variableAnswers);
 
     console.log("\n✅ Project created successfully!");
     console.log(`📁 Output directory: ${absoluteOutputDir}\n`);
@@ -127,13 +109,11 @@ async function main() {
       fs.rmSync(tempDir, { recursive: true, force: true });
     }
   } catch (error) {
-    console.error(
-      "\n❌ Error:",
-      error instanceof Error ? error.message : String(error)
-    );
+    console.error("\n❌ Error:", error instanceof Error ? error.message : String(error));
     process.exit(1);
   }
 }
 
 main();
+
 
