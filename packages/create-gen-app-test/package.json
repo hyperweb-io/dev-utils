@@ -24,7 +24,7 @@
     "copy": "makage assets",
     "clean": "makage clean",
     "prepublishOnly": "npm run build",
-    "build": "npm run clean && makage build-ts && npm run copy",
+    "build": "makage build",
     "dev": "node -r ts-node/register dev/index.ts",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@types/minimist": "^1.2.5",
-    "makage": "0.1.5"
+    "makage": "0.1.6"
   },
   "keywords": []
 }

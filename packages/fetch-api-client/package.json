@@ -23,7 +23,7 @@
     "copy": "makage assets",
     "clean": "makage clean",
     "prepublishOnly": "npm run build",
-    "build": "npm run clean && makage build-ts && npm run copy",
+    "build": "makage build",
     "lint": "eslint . --fix",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -35,6 +35,6 @@
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.39",
-    "makage": "0.1.5"
+    "makage": "0.1.6"
   }
 }
