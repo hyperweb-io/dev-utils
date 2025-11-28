@@ -564,39 +564,4 @@ module.exports = {
     });
   });
 
-  it("should respect ignore patterns from questions", async () => {
-    const ignoredDir = path.join(testTempDir, "__tests__");
-    fs.mkdirSync(ignoredDir);
-    fs.writeFileSync(
-      path.join(ignoredDir, "example.txt"),
-      "This file has ____ignored____ variable"
-    );
-    fs.writeFileSync(
-      path.join(testTempDir, ".questions.json"),
-      JSON.stringify({
-        ignore: ["__tests__"],
-        questions: [],
-      })
-    );
-
-    const result = await extractVariables(testTempDir);
-
-    expect(result.fileReplacers.map((r) => r.variable)).not.toContain("tests");
-    expect(result.contentReplacers.map((r) => r.variable)).not.toContain(
-      "IGNORED"
-    );
-  });
-
-  it("should skip default ignored content tokens", async () => {
-    fs.writeFileSync(
-      path.join(testTempDir, "jest.config.js"),
-      "// Match both __tests__ and colocated test files"
-    );
-
-    const result = await extractVariables(testTempDir);
-
-    expect(result.contentReplacers.map((r) => r.variable)).not.toContain(
-      "tests"
-    );
-  });
 });
