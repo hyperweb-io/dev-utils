@@ -4,7 +4,13 @@ import { Transform } from 'stream';
 import { pipeline } from 'stream/promises';
 
 import { ExtractedVariables } from '../types';
-import { renderLicense, isSupportedLicense } from '../licenses';
+import {
+  renderLicense,
+  isSupportedLicense,
+  findLicenseAuthor,
+  findLicenseEmail,
+  findLicenseValue,
+} from '../licenses';
 
 /**
  * Replace variables in all files in the template directory
@@ -85,7 +91,7 @@ async function ensureLicenseFile(
   outputDir: string,
   answers: Record<string, any>
 ): Promise<void> {
-  const licenseValue = getAnswer(answers, ["LICENSE", "license"]);
+  const licenseValue = findLicenseValue(answers);
   if (typeof licenseValue !== 'string' || licenseValue.trim() === '') {
     return;
   }
@@ -99,19 +105,10 @@ async function ensureLicenseFile(
   }
 
   const author =
-    getAnswer(answers, [
-      "USERFULLNAME",
-      "AUTHOR",
-      "AUTHORFULLNAME",
-      "USERNAME",
-      "fullName",
-      "author",
-      "authorFullName",
-      "userName",
-    ]) ?? "Unknown Author";
+    findLicenseAuthor(answers) ?? "Unknown Author";
 
   const email =
-    getAnswer(answers, ["USEREMAIL", "EMAIL", "email", "userEmail"]) ?? "";
+    findLicenseEmail(answers) ?? "";
 
   const content = renderLicense(selectedLicense, {
     author: String(author),
@@ -128,19 +125,6 @@ async function ensureLicenseFile(
   console.log(
     `[create-gen-app] LICENSE updated with ${selectedLicense} template.`
   );
-}
-
-function getAnswer(
-  answers: Record<string, any>,
-  keys: string[]
-): string | undefined {
-  for (const key of keys) {
-    const value = answers?.[key];
-    if (typeof value === "string" && value.trim() !== "") {
-      return value;
-    }
-  }
-  return undefined;
 }
 
 /**
