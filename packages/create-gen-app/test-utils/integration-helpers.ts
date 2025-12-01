@@ -35,6 +35,7 @@ export function buildAnswers(
     email: `tester-${safeSuffix}@example.com`,
     moduleName: `integration-${safeSuffix}`,
     moduleDesc: `Integration test module ${suffix}`,
+    description: `Integration test module ${suffix}`,
     repoName: `integration-${safeSuffix}`,
     username: `tester-${safeSuffix}`,
     access: "public",

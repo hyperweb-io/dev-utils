@@ -378,7 +378,7 @@ module.exports = {
       expect(answers.fullName).toBe("Prompted User");
     });
 
-    it("should hydrate overlapping template variables from answers", async () => {
+    it("should not hydrate overlapping template variables implicitly", async () => {
       const { Inquirerer } = require("inquirerer");
       const mockPrompt = jest.fn().mockResolvedValue({
         description: "Prompted description",
@@ -406,7 +406,7 @@ module.exports = {
 
       const answers = await promptUser(extractedVariables, {}, false);
       expect(answers.description).toBe("Prompted description");
-      expect(answers.moduleDesc).toBe("Prompted description");
+      expect(answers.moduleDesc).toBeUndefined();
     });
   });
 
