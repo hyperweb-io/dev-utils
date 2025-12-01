@@ -14,6 +14,18 @@ type LicenseTemplateMap = Record<string, string>;
 let cachedTemplates: LicenseTemplateMap | null = null;
 
 export type SupportedLicense = string;
+export const LICENSE_VALUE_KEYS = ["LICENSE", "license"];
+export const LICENSE_AUTHOR_KEYS = [
+  "USERFULLNAME",
+  "AUTHOR",
+  "AUTHORFULLNAME",
+  "USERNAME",
+  "fullName",
+  "author",
+  "authorFullName",
+  "userName",
+];
+export const LICENSE_EMAIL_KEYS = ["USEREMAIL", "EMAIL", "email", "userEmail"];
 
 export function isSupportedLicense(name: string): name is SupportedLicense {
   if (!name) {
@@ -56,6 +68,24 @@ export function renderLicense(
 
 export function listSupportedLicenses(): string[] {
   return Object.keys(loadLicenseTemplates());
+}
+
+export function findLicenseValue(
+  answers: Record<string, any>
+): string | undefined {
+  return getAnswerValue(answers, LICENSE_VALUE_KEYS);
+}
+
+export function findLicenseAuthor(
+  answers: Record<string, any>
+): string | undefined {
+  return getAnswerValue(answers, LICENSE_AUTHOR_KEYS);
+}
+
+export function findLicenseEmail(
+  answers: Record<string, any>
+): string | undefined {
+  return getAnswerValue(answers, LICENSE_EMAIL_KEYS);
 }
 
 function loadLicenseTemplates(): LicenseTemplateMap {
@@ -106,3 +136,15 @@ function findTemplatesDir(): string | null {
   return null;
 }
 
+function getAnswerValue(
+  answers: Record<string, any>,
+  keys: string[]
+): string | undefined {
+  for (const key of keys) {
+    const value = answers?.[key];
+    if (typeof value === "string" && value.trim() !== "") {
+      return value;
+    }
+  }
+  return undefined;
+}

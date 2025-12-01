@@ -7,7 +7,6 @@ import { Question } from 'inquirerer';
  */
 export interface Questions {
   questions: Question[];
-  ignore?: string[];
 }
 
 /**

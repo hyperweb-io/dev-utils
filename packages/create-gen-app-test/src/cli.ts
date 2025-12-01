@@ -208,7 +208,9 @@ export async function runCli(
 
     const answerOverrides = extractAnswerOverrides(args);
     const noTty = Boolean(
-      args["no-tty"] ?? (args as Record<string, unknown>).noTty
+      args["no-tty"] ??
+        (args as Record<string, unknown>).noTty ??
+        (args as Record<string, unknown>).tty === false
     );
 
     // Use the createFromTemplate function which will use the same cache

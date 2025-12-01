@@ -16,33 +16,29 @@ exports[`cached template integration tests first clone with variable replacement
   "package.json": {
     "author": "Test User test <tester-test@example.com>",
     "bugs": {
-      "url": "https://github.com/Test User test/Test User test/issues",
+      "url": "https://github.com/tester-test/integration-test/issues",
     },
-    "description": "Test Module test",
+    "description": "Integration test module test",
     "devDependencies": {
-      "pgsql-test": "^2.13.2",
+      "makage": "0.1.8",
+      "pgsql-test": "^2.14.12",
     },
-    "homepage": "https://github.com/Test User test/Test User test",
+    "homepage": "https://github.com/tester-test/integration-test",
     "keywords": [],
     "license": "MIT",
     "name": "integration-test",
-    "pnpm": {
-      "overrides": {
-        "graphql": "14.7.0",
-      },
-    },
     "publishConfig": {
       "access": "public",
       "directory": "dist",
     },
     "repository": {
       "type": "git",
-      "url": "https://github.com/Test User test/Test User test",
+      "url": "https://github.com/tester-test/integration-test",
     },
     "scripts": {
       "lint": "eslint . --fix",
       "test": "jest",
-      "test:watch": "jest --watch",
+      "test:watch": "makage test --watch deploy --ext sql",
     },
     "version": "0.0.1",
   },
@@ -65,33 +61,29 @@ exports[`cached template integration tests second clone from cache should snapsh
   "package.json": {
     "author": "Test User cached <tester-cached@example.com>",
     "bugs": {
-      "url": "https://github.com/Test User cached/Test User cached/issues",
+      "url": "https://github.com/tester-cached/integration-cached/issues",
     },
-    "description": "Test Module cached",
+    "description": "Integration test module cached",
     "devDependencies": {
-      "pgsql-test": "^2.13.2",
+      "makage": "0.1.8",
+      "pgsql-test": "^2.14.12",
     },
-    "homepage": "https://github.com/Test User cached/Test User cached",
+    "homepage": "https://github.com/tester-cached/integration-cached",
     "keywords": [],
     "license": "MIT",
     "name": "integration-cached",
-    "pnpm": {
-      "overrides": {
-        "graphql": "14.7.0",
-      },
-    },
     "publishConfig": {
       "access": "public",
       "directory": "dist",
     },
     "repository": {
       "type": "git",
-      "url": "https://github.com/Test User cached/Test User cached",
+      "url": "https://github.com/tester-cached/integration-cached",
     },
     "scripts": {
       "lint": "eslint . --fix",
       "test": "jest",
-      "test:watch": "jest --watch",
+      "test:watch": "makage test --watch deploy --ext sql",
     },
     "version": "0.0.1",
   },
